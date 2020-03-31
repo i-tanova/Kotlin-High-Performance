@@ -42,3 +42,40 @@ cat.plus("Dog") - creates new String
 
 Don't use concatination "a" + "b" use string templates "$a $b" - under the hood it uses StringBuilder
 In multithreaded environment use String Buffer.
+
+ ## Functional programming
+ * Write in declarative style (concentrate on business logic). Code describes what it does.
+ 
+ - pure functions
+ Result of the function depend on parameters, no shared state. Examples kotlin.math
+ 
+ - first-class functions
+ Function outside of object. Not a class member. All pure functions should be declared that way.
+ 
+ - higher-order functions
+ Functions that take functions as parameters or return type.
+ Strategy pattern. -> interface CompressionStrategy: ZipImplementation. Archiver class that holds it - set strategy, get strategy, archive(). This pattern in Kotlin can be implemented on one line.
+ 
+ inline fun File.archive(strategy: () -> File): File = strategy()
+ 
+    - Inline functions - Use Inline with high order functions otherwise function is wrapped inside object.
+    
+ - function composition
+ Avoid code as students.filter(name > "i").filter(age < 19). Use instead:
+ 
+ fun predicate(student) = ageLessThan19() && firstNameStartsWith(J)
+ students.filter(::predicate)
+ 
+ - typeclasses
+ - Lambdas
+ 
+ Capturing lambdas
+  val lambda = { lambda body }
+  lambda()
+  
+  This creates a lot of code in java. so preferrably - don't use it.
+  
+ - Closures
+ - Immutability
+ 
+
