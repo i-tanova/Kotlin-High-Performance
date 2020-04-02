@@ -74,8 +74,48 @@ In multithreaded environment use String Buffer.
   lambda()
   
   This creates a lot of code in java. so preferrably - don't use it.
-  
  - Closures
  - Immutability
+ 
+ ## Collections
+ 
+ - Prefer read-only view collections over mutable ones
+ - with ArrayList use while loop
+ - Use sequences (o..1_000_00).asSequence().filter().map 
+ 
+ ## Properties
+ 
+ - Field vs Property - field is class variable that holds value, property has getter and setter
+ - Access field without getter in Kotlin using backing properties.
+ 
+ private var _text //backing property
+ var text: String //property
+ get(){
+ return _text
+ set(value){
+ _text = value
+ 
+ And inside the class use _text (no getter will be called)
+  
+ - @JvmField annotation 
+ 
+ Declares a field without getter and setter
+ Point(3, 4)
+ p.x = 10 
+ 
+ To declare this class wothout getter and setter use
+ class Point(@JvmField var x, @JvmField var y)
+ 
+ - Top-level members
+  Strive to declare those inide one file
+  
+  - Compile time constants
+  Use const modifier 
+  
+  - lateinit modifier
+  Better don't use it
+  
+  ## Delegation
+ 
  
 
