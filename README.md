@@ -58,7 +58,7 @@ In multithreaded environment use String Buffer.
  
  inline fun File.archive(strategy: () -> File): File = strategy()
  
-    - Inline functions - Use Inline with high order functions otherwise function is wrapped inside object.
+   - Inline functions - Use Inline with high order functions otherwise function is wrapped inside object.
     
  - function composition
  Avoid code as students.filter(name > "i").filter(age < 19). Use instead:
@@ -117,5 +117,19 @@ In multithreaded environment use String Buffer.
   
   ## Delegation
  
+  Extremely powerful feature of Kotlin
+  
+  - Singleton delegate object
+       -   Create delegate: 
+  
+  object CalculatorBrain : Calculator{
+    override calculate()
+  } 
+        - Use delegate
+ 
+   class UseDelegate() : Calculator by CalculatorBrain
+  
+  
+
  
 
