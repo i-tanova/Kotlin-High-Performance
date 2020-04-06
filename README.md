@@ -127,7 +127,29 @@ In multithreaded environment use String Buffer.
   } 
         - Use delegate
  
-   class UseDelegate() : Calculator by CalculatorBrain
+   class UseDelegate() : Calculator by CalculatorBrain  
+   - this will pass Calculator Brain in the constructor
+   
+   -  We can use this with property:
+   
+   object SingletonDelegate : ReadOnlyProperty<>
+   get value
+   ..
+   
+   val property by SingletonDelegate
+   
+   - Delegate object with generic
+   class GenericDelegate<T> : RreadOnlyProperty<Any>, T?>
+  
+   Use it:
+   
+   val property by GenericDelegate<Int>()
+  
+   ! It is better to do not use Generics, use separate classes insted - IntDelegate, FloatDelegate..
+   
+   ## Ranges
+  
+  
   
   
 
