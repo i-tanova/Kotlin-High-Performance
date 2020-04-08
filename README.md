@@ -148,10 +148,29 @@ In multithreaded environment use String Buffer.
    ! It is better to do not use Generics, use separate classes insted - IntDelegate, FloatDelegate..
    
    ## Ranges
-  
-  
-  
-  
-
- 
-
+   
+   - Don't use nullable types with ranges
+   - use range.asSequence() - it is very fast
+   
+   ## Concurrency and parallelism
+   
+   - Process asynchronious events on different threads
+       Single.fromCallabe{ bake() }.subscribeOn(Scheduler.computation)
+       
+       Observable.range(0, amount).flatMapSingle{}
+       
+   - Synchronize  the work of several threads
+      
+       val lock = Lock()
+       Observable.range().doAfterTerminate { lock.unlock() }
+       lock.lock()
+      
+     - Use coroutines to synchronize asynchronous code
+       runBlocking{
+         (0 until amount).map { async {baker.bake() }.map {it.await()} 
+         }
+      
+      - You can use existing RX code with coroutines with use of library - kotlinx-coroutines-rx2
+      
+      - Use actor pattern to avoid shared, mutable state between threads
+      
